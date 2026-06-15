@@ -11,7 +11,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   const firstName = user?.firstName ?? "Friend";
   const justJoined = params.success === "true";
 
-  const links = [["→","The Journey Path","/journey","Your 7-step framework roadmap"],["📄","Articles","/articles","All published writings"],["✝","Devotionals","/devotionals","Daily scripture-rooted reflections"],["🎙","Podcast","/podcast","The Whole Person Podcast"],["🎬","Videos","/videos","Teaching video library"],["📚","Resources","/resources","Guides, PDFs, tools"]];
+  const links = [["→","The Journey Path","/journey","Your 7-step framework roadmap"],["📄","Articles","/articles","All published writings"],["✝","Devotional App","https://devotional-discovery.lovable.app","Daily scripture-rooted reflections"],["🎙","Podcast","/podcast","The Whole Person Podcast"],["🎬","Videos","/videos","Teaching video library"],["📚","Resources","/resources","Guides, PDFs, tools"]];
   const pillars = [["I","Awareness"],["II","Surrender"],["III","Identity"],["IV","Discipline"],["V","Renewal"],["VI","Compassion"],["VII","Integration"]];
 
   return (

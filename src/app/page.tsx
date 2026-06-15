@@ -39,7 +39,7 @@ export default function HomePage() {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.9rem", justifyContent: "center", marginTop: "3rem" }}>
             <Link href="/journey" className="btn btn-gold">Start the Journey</Link>
             <Link href="/framework" className="btn btn-outline-light">Explore the Framework</Link>
-            <Link href="/membership" className="btn btn-outline-light">Join the Community</Link>
+            <a href="https://devotional-discovery.lovable.app" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light">Devotional App ↗</a>
           </div>
           <div style={{ display: "flex", gap: "2.5rem", justifyContent: "center", alignItems: "center", marginTop: "4rem", flexWrap: "wrap" }}>
             {[["7","Pillars"],["50+","Devotionals"],["20+","Teachings"],["1","Framework"]].map(([n,l],i,a) => (

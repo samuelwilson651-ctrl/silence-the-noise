@@ -4,7 +4,14 @@ import { NextResponse } from "next/server";
 const isProtected = createRouteMatcher(["/dashboard(.*)", "/account(.*)", "/course(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isProtected(req)) await auth.protect();
+  if (isProtected(req)) {
+    const { userId } = await auth();
+    if (!userId) {
+      const signInUrl = new URL("/login", req.url);
+      signInUrl.searchParams.set("redirect_url", req.url);
+      return NextResponse.redirect(signInUrl);
+    }
+  }
   return NextResponse.next();
 });
 

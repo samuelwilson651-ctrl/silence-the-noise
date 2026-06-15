@@ -18,8 +18,9 @@ export async function getUserAccess() {
 }
 
 export async function requireMembership() {
-  const { isAuthenticated, isMember } = await getUserAccess();
-  if (!isAuthenticated) redirect("/login?redirect=/dashboard");
+  const { userId } = await auth();
+  if (!userId) redirect("/login?redirect=/dashboard");
+  const { isMember } = await getUserAccess();
   if (!isMember) redirect("/membership");
   return true;
 }

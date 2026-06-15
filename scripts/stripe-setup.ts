@@ -5,7 +5,7 @@
  * Creates all products in Stripe and prints the price IDs to add to .env.local
  */
 import Stripe from "stripe";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2024-04-10" });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2025-02-24.acacia" });
 
 async function setup() {
   console.log("Setting up Stripe products for Silence the Noise™...\n");

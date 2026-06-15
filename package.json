@@ -1,0 +1,46 @@
+{
+  "name": "silence-the-noise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Silence the Noise™ — Dr. Samuel E. Wilson, MD",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "stripe:setup": "tsx scripts/stripe-setup.ts"
+  },
+  "dependencies": {
+    "next": "14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript": "^5.4.0",
+    "@clerk/nextjs": "^5.0.0",
+    "stripe": "^15.3.0",
+    "@stripe/stripe-js": "^3.3.0",
+    "@sanity/client": "^6.15.0",
+    "@sanity/image-url": "^1.0.2",
+    "next-sanity": "^9.0.0",
+    "resend": "^3.2.0",
+    "@vercel/analytics": "^1.3.0",
+    "@vercel/speed-insights": "^1.0.10",
+    "framer-motion": "^11.1.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.378.0",
+    "zod": "^3.23.0",
+    "sharp": "^0.33.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.0",
+    "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.3",
+    "tsx": "^4.7.3"
+  }
+}

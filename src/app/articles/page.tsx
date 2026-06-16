@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 
 const articles = [
   { href: "/articles/valuing-the-lives-of-others", title: "Valuing the Lives of Others: Becoming an Instrument of Peace", desc: "To become an instrument of peace in another person's storm is to remind your own soul that God has not finished using you.", category: "Depression · Purpose · Faith", pillar: "Pillar VI · Pillar VII", tag: "Cornerstone" },
+  { href: "/articles/helping-others-interrupts-depressions-loop", title: "Helping Others Interrupts Depression's Loop", desc: "The neuroscience and spiritual principle behind why service heals the servant. The science behind why love changes the brain.", category: "Depression · Purpose", pillar: "Pillar VI · Pillar IV", tag: "Clinical" },
   { href: "/articles/anxiety-is-a-signal-not-the-root", title: "Anxiety Is Often a Signal, Not the Root Cause", desc: "The dashboard warning light is not the engine problem. Understanding what anxiety is trying to protect you from — and the 7-step path toward freedom.", category: "Anxiety", pillar: "Pillar I · Pillar IV", tag: "Anchor" },
   { href: "/articles/when-nothing-seems-to-work", title: "When Nothing Seems to Work", desc: "For the reader who has tried everything and is still in the dark. Healing is rarely linear — and slow progress is still progress.", category: "Depression · Anxiety", pillar: "Pillar V", tag: "Featured" },
   { href: "/articles/the-power-of-i-dont-know", title: "The Power of \"I Don't Know\"", desc: "When the mind believes it already knows, exploration stops. Curiosity is movement of the mind. Faith is movement of the spirit.", category: "Purpose · Faith", pillar: "Pillar I · Pillar III", tag: "Teaching" },
@@ -31,7 +32,8 @@ const coming = [
 
 const tagColors: Record<string, { bg: string; color: string }> = {
   Cornerstone: { bg: "#0f1e35", color: "#c9a84c" },
-  Anchor:      { bg: "#1a2e4a", color: "#c9a84c" },
+  Clinical:    { bg: "#1a2e4a", color: "#c9a84c" },
+  Anchor:      { bg: "#2a3e5a", color: "#c9a84c" },
   Featured:    { bg: "#c9a84c", color: "#0f1e35" },
   Teaching:    { bg: "#f0ebe1", color: "#6b6256" },
 };

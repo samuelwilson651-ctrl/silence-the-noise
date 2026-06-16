@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 const articles = [
+  { href: "/articles/valuing-the-lives-of-others", title: "Valuing the Lives of Others: Becoming an Instrument of Peace", desc: "To become an instrument of peace in another person's storm is to remind your own soul that God has not finished using you.", category: "Depression · Purpose · Faith", pillar: "Pillar VI: Compassion · Pillar VII: Integration", tag: "Cornerstone" },
   { href: "/articles/when-nothing-seems-to-work", title: "When Nothing Seems to Work", desc: "For the reader who has tried everything and is still in the dark. Healing is rarely linear — and slow progress is still progress.", category: "Depression · Anxiety", pillar: "Pillar V: Renewal", tag: "Featured" },
   { href: "/articles/the-power-of-i-dont-know", title: "The Power of \"I Don't Know\"", desc: "When the mind believes it already knows, exploration stops. Curiosity is movement of the mind. Faith is movement of the spirit.", category: "Purpose · Faith", pillar: "Pillar I: Awareness · Pillar III: Identity", tag: "Teaching" },
 ];
@@ -40,15 +41,14 @@ export default function ArticlesPage() {
           </p>
         </div>
       </header>
-
       <section style={{ padding: "5rem 2rem" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "2rem" }}>Published</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "4rem" }}>
             {articles.map(a => (
               <Link key={a.href} href={a.href} style={{ display: "block", background: "white", border: "1px solid #e4ddd2", borderRadius: 2, padding: "2.25rem", position: "relative" }}>
-                {a.tag && <span style={{ position: "absolute", top: -1, left: "2rem", background: a.tag === "Featured" ? "#c9a84c" : "#0f1e35", color: a.tag === "Featured" ? "#0f1e35" : "white", fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700, padding: "0.2rem 0.65rem", borderRadius: "0 0 3px 3px" }}>{a.tag}</span>}
-                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: `${a.tag ? "0.75rem" : 0} 0 0.75rem` }}>
+                <span style={{ position: "absolute", top: -1, left: "2rem", background: a.tag === "Cornerstone" ? "#0f1e35" : a.tag === "Featured" ? "#c9a84c" : "#1a2e4a", color: a.tag === "Featured" ? "#0f1e35" : "#c9a84c", fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700, padding: "0.2rem 0.65rem", borderRadius: "0 0 3px 3px" }}>{a.tag}</span>
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
                   <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", padding: "0.2rem 0.6rem", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 2 }}>{a.pillar}</span>
                   <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b6256", padding: "0.2rem 0.6rem", border: "1px solid #e4ddd2", borderRadius: 2 }}>{a.category}</span>
                 </div>
@@ -58,7 +58,6 @@ export default function ArticlesPage() {
               </Link>
             ))}
           </div>
-
           <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "1.5rem" }}>Coming Soon</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: "1rem" }}>
             {coming.map(a => (

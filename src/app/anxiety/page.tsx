@@ -7,11 +7,23 @@ export const metadata: Metadata = {
 };
 
 const articles = [
-  { href: "/articles/anxiety-is-a-signal-not-the-root", title: "Anxiety Is Often a Signal, Not the Root Cause", desc: "The dashboard warning light is not the engine problem. Understanding what anxiety is trying to protect you from — and the 7-step path toward freedom.", pillar: "Pillar I: Awareness · Pillar IV: Discipline", tag: "Anchor" },
-  { href: "/articles/when-nothing-seems-to-work", title: "When Nothing Seems to Work", desc: "For the reader who has prayed, counseled, medicated, and is still in the dark. Healing is rarely linear — and slow progress is still progress.", pillar: "Pillar V: Renewal Under Pressure", tag: "Featured" },
+  { href: "/articles/anxiety-is-a-signal-not-the-root", title: "Anxiety Is Often a Signal, Not the Root Cause", desc: "The dashboard warning light is not the engine problem. Understanding what anxiety is protecting you from — and the 7-step path toward freedom.", pillar: "Pillar I · Pillar IV", tag: "Anchor" },
+  { href: "/articles/when-uncertainty-arrives-5-steps", title: "When Uncertainty Arrives: 5 Steps to Keep It from Owning Your Mind", desc: "A clinical framework for moving through uncertainty without being consumed by it. Define it. Measure it. Act. Surrender. Find peace.", pillar: "Pillar I · Pillar II · Pillar IV", tag: "Framework" },
+  { href: "/articles/the-magnitude-of-uncertainty-matters", title: "The Magnitude of Uncertainty Matters", desc: "Wisdom is recognizing which uncertainties deserve your energy and which are merely consuming it. Includes Part 2: Responsibility vs Control + Part 3: Faith During the Waiting.", pillar: "Pillar I · Pillar II", tag: "Teaching" },
+  { href: "/articles/effort-trust-and-the-limits-of-control", title: "Effort, Trust, and the Limits of Control", desc: "When has effort fulfilled its assignment? Why more thinking often produces more exhaustion — and what trust actually looks like.", pillar: "Pillar II · Pillar IV", tag: "Teaching" },
+  { href: "/articles/when-nothing-seems-to-work", title: "When Nothing Seems to Work", desc: "For the reader who has tried everything and is still in the dark. Healing is rarely linear — and slow progress is still progress.", pillar: "Pillar V", tag: "Featured" },
+  { href: "/devotionals/prayer-supplication-thanksgiving", title: "Prayer, Supplication, and Thanksgiving", desc: "Philippians 4:6–7 — the three movements that interrupt anxiety and open the door to the peace that passes understanding.", pillar: "Pillar I · Pillar II", tag: "Devotional" },
 ];
 
-const coming = ["The Noise of Tomorrow","The Cost of Uncertainty","Five Steps to Overcome Anxiety","The Wandering Mind","Bringing Heart and Mind into Accord","When the Noise Is Always About Me","The False Promise of Control"];
+const coming = ["The Noise of Tomorrow","The Wandering Mind","Bringing Heart and Mind into Accord","When the Noise Is Always About Me","The False Promise of Control","The Cost of Uncertainty"];
+
+const tagColors: Record<string, { bg: string; color: string }> = {
+  Anchor:     { bg: "#0f1e35", color: "#c9a84c" },
+  Framework:  { bg: "#1a2e4a", color: "#c9a84c" },
+  Teaching:   { bg: "#f0ebe1", color: "#6b6256" },
+  Featured:   { bg: "#c9a84c", color: "#0f1e35" },
+  Devotional: { bg: "#2a3e5a", color: "#c9a84c" },
+};
 
 export default function AnxietyPage() {
   return (
@@ -32,19 +44,24 @@ export default function AnxietyPage() {
 
       <section style={{ padding: "5rem 2rem" }}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "2rem" }}>Published Articles</p>
+          <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "2rem" }}>Published — {articles.length} Pieces</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "4rem" }}>
-            {articles.map(a => (
-              <Link key={a.href} href={a.href} style={{ display: "block", background: "white", border: "1px solid #e4ddd2", borderRadius: 2, padding: "2.25rem", position: "relative" }}>
-                <span style={{ position: "absolute", top: -1, left: "2rem", background: a.tag === "Anchor" ? "#0f1e35" : "#c9a84c", color: a.tag === "Anchor" ? "#c9a84c" : "#0f1e35", fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700, padding: "0.2rem 0.65rem", borderRadius: "0 0 3px 3px" }}>{a.tag}</span>
-                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
-                  <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", padding: "0.2rem 0.6rem", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 2 }}>{a.pillar}</span>
-                </div>
-                <h2 style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontSize: "clamp(1.35rem,2.5vw,1.75rem)", fontWeight: 600, color: "#0f1e35", margin: "0 0 0.6rem" }}>{a.title}</h2>
-                <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1.05rem", color: "#6b6256", lineHeight: 1.75, margin: "0 0 1rem" }}>{a.desc}</p>
-                <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", fontWeight: 500 }}>Read Article →</span>
-              </Link>
-            ))}
+            {articles.map(a => {
+              const tc = tagColors[a.tag] ?? { bg: "#0f1e35", color: "#c9a84c" };
+              const isDevotional = a.href.includes("/devotionals/");
+              return (
+                <Link key={a.href} href={a.href} style={{ display: "block", background: "white", border: "1px solid #e4ddd2", borderRadius: 2, padding: "2.25rem", position: "relative" }}>
+                  <span style={{ position: "absolute", top: -1, left: "2rem", background: tc.bg, color: tc.color, fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.6rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 700, padding: "0.2rem 0.65rem", borderRadius: "0 0 3px 3px" }}>{a.tag}</span>
+                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
+                    <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", padding: "0.2rem 0.6rem", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 2 }}>{a.pillar}</span>
+                    {isDevotional && <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b6256", padding: "0.2rem 0.6rem", border: "1px solid #e4ddd2", borderRadius: 2 }}>✝ Devotional</span>}
+                  </div>
+                  <h2 style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontSize: "clamp(1.25rem,2.5vw,1.6rem)", fontWeight: 600, color: "#0f1e35", margin: "0 0 0.6rem" }}>{a.title}</h2>
+                  <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1.05rem", color: "#6b6256", lineHeight: 1.75, margin: "0 0 1rem" }}>{a.desc}</p>
+                  <span style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.72rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", fontWeight: 500 }}>Read →</span>
+                </Link>
+              );
+            })}
           </div>
 
           <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "1.5rem" }}>Coming Soon</p>

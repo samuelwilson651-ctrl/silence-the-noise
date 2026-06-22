@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Dr. Samuel E. Wilson, MD | Silence the Noise™",
+  title: "About Dr. Samuel E. Wilson, MD | Silence the Noise",
   description: "Dr. Samuel E. Wilson is a physician, author, educator, inventor, and speaker committed to helping people restore clarity, purpose, and hope.",
 };
 

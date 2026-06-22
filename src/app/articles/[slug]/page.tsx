@@ -1,30 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-interface Props { params: Promise<{ slug: string }> }
+export const metadata: Metadata = {
+  title: "Article | Silence the Noise™",
+};
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  return { title: `${slug.replace(/-/g," ")} | Silence the Noise™` };
-}
-
-export default async function ArticlePage({ params }: Props) {
-  const { slug } = await params;
-  const title = slug.split("-").map((w: string) => w.charAt(0).toUpperCase()+w.slice(1)).join(" ");
+export default function ArticleSlugPage({ params }: { params: { slug: string } }) {
   return (
-    <div style={{ minHeight: "70vh", background: "#faf7f2" }}>
-      <header style={{ background: "#0f1e35", padding: "6rem 2rem 4rem" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.25rem" }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.62rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "#c9a84c", fontWeight: 500, padding: "0.25rem 0.65rem", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 2 }}>Part of Silence the Noise™</span>
-          </div>
-          <h1 style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontSize: "clamp(2.25rem,5vw,3.75rem)", fontWeight: 600, color: "white", lineHeight: 1.15, margin: 0 }}>{title}</h1>
-          <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", marginTop: "1.5rem", letterSpacing: "0.08em" }}>Dr. Samuel E. Wilson, MD</p>
+    <div style={{ background: "#faf7f2", minHeight: "70vh", padding: "6rem 2rem" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", textAlign: "center" }}>
+        <p style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#c9a84c", marginBottom: "1rem" }}>Article</p>
+        <h1 style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 600, color: "#0f1e35", margin: "0 0 1.5rem" }}>
+          {params.slug.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
+        </h1>
+        <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1.05rem", color: "#6b6256", margin: "0 0 2.5rem", lineHeight: 1.8 }}>
+          This article is being prepared for publication. Please check back soon.
+        </p>
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+          <Link href="/articles" className="btn btn-gold">All Articles →</Link>
+          <Link href="/framework" className="btn btn-outline-dark">Explore the Framework</Link>
         </div>
-      </header>
-      <div style={{ maxWidth: 800, margin: "0 auto", padding: "4rem 2rem" }}>
-        <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1.1rem", color: "#6b6256", lineHeight: 1.85 }}>Connect Sanity CMS to load this article. See <code style={{ fontSize: "0.85em", background: "#f0ebe1", padding: "0.1rem 0.3rem", borderRadius: 2 }}>src/lib/sanity.ts</code> for the query.</p>
-        <div style={{ marginTop: "3rem" }}><Link href="/articles" style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#c9a84c" }}>← All Articles</Link></div>
       </div>
     </div>
   );

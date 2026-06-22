@@ -48,6 +48,8 @@
   .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
   .btn-outline-light { background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(201,168,76,0.35); }
   .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-outline-dark { background: transparent; color: var(--navy); border: 1px solid rgba(15,30,53,0.3); }
+  .btn-outline-dark:hover { border-color: var(--navy); background: var(--navy); color: white; }
   .btn-outline-dark { background: transparent; color: var(--navy); border: 1px solid rgba(15,30,53,0.25); }
   .btn-outline-dark:hover { border-color: var(--navy); }
 

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
 };
 
 const published = [
+  { href: "/devotionals/caring-for-others-opens-a-window", title: "Caring for Others Opens a Window", scripture: "Galatians 6:2 · John 15:5", theme: "Depression · Compassion · Service · Healing", pillars: ["Pillar VI: Compassion","Pillar VII: Integration"], tags: ["Depression","Faith & Renewal"] },
   { href: "/devotionals/prayer-supplication-thanksgiving", title: "Prayer, Supplication, and Thanksgiving", scripture: "Philippians 4:6–7", theme: "Prayer · Anxiety · Peace", pillars: ["Pillar I: Awareness","Pillar II: Surrender"], tags: ["Faith & Renewal","Anxiety"] },
   { href: "/devotionals/every-day-the-sun-rises", title: "Every Day the Sun Rises", scripture: "Psalm 27:1", theme: "Morning · Hope · Faithfulness", pillars: ["Pillar I: Awareness","Pillar II: Surrender"], tags: ["Faith & Renewal"] },
 ];

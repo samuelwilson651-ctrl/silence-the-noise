@@ -1,5 +1,3 @@
-
-Page · TSX
 import type { Metadata } from 'next'
 import Script from 'next/script'
  

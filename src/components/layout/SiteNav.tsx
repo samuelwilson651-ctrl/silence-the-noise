@@ -65,7 +65,7 @@ export function SiteNav() {
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <Link href="/login" style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Sign In</Link>
-            <Link href="/membership" style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, background: "#c9a84c", color: "#0f1e35", padding: "0.45rem 1.1rem", borderRadius: 2 }}>Join</Link>
+            <Link href="/signup" style={{ fontFamily: "var(--font-inter,sans-serif)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, background: "#c9a84c", color: "#0f1e35", padding: "0.45rem 1.1rem", borderRadius: 2 }}>Join</Link>
             <button onClick={() => setMobile(!mobile)} aria-label="Toggle menu" style={{ background: "none", border: "none", cursor: "pointer", padding: 4, display: "flex", flexDirection: "column", gap: 5 }}>
               {[0,1,2].map(i => <span key={i} style={{ width: 22, height: 1.5, background: "rgba(255,255,255,0.7)", display: "block" }} />)}
             </button>
@@ -89,7 +89,7 @@ export function SiteNav() {
             </div>
           ))}
           <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-            <Link href="/membership" className="btn btn-gold" style={{ justifyContent: "center" }}>Join the Community</Link>
+            <Link href="/signup" className="btn btn-gold" style={{ justifyContent: "center" }}>Join the Community</Link>
             <Link href="/login" className="btn btn-outline-light" style={{ justifyContent: "center" }}>Sign In</Link>
           </div>
         </div>

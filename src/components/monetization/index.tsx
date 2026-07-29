@@ -45,8 +45,25 @@ export function CheckoutButton({ productType, className="btn btn-gold", style, c
     setLoading(true);
     try {
       const res = await fetch("/api/stripe/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ productType, successUrl: `${window.location.origin}/dashboard?success=true`, cancelUrl: window.location.href }) });
-      const data = await res.json();
-      if (data.url) window.location.href = data.url;
+      const data = await res.json().catch(() => ({}));
+
+if (res.status === 401) {
+  window.location.href = `/signup?product=${productType}`;
+  return;
+}
+
+if (!res.ok) {
+  alert(data.error || "Checkout could not begin. Please try again.");
+  return;
+}
+
+if (data.url) {
+  window.location.href = data.url;
+  return;
+}
+
+alert("Checkout could not begin. Please try again.");
+    
     } catch { alert("Something went wrong. Please try again."); }
     finally { setLoading(false); }
   };

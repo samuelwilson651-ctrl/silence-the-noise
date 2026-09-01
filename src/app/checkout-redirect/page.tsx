@@ -1,5 +1,6 @@
+
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { ProductType } from "@/types";
 
@@ -11,7 +12,7 @@ const VALID_PRODUCTS: ProductType[] = [
   "consultation",
 ];
 
-export default function CheckoutRedirectPage() {
+function CheckoutRedirectInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -70,5 +71,23 @@ export default function CheckoutRedirectPage() {
         )}
       </div>
     </div>
+  );
+}
+
+function LoadingFallback() {
+  return (
+    <div style={{ minHeight: "70vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#faf7f2", padding: "4rem 2rem" }}>
+      <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1.1rem", color: "#6b6256" }}>
+        Setting up your checkout…
+      </p>
+    </div>
+  );
+}
+
+export default function CheckoutRedirectPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <CheckoutRedirectInner />
+    </Suspense>
   );
 }

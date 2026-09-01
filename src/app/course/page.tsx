@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CheckoutButton } from "@/components/monetization";
 
 export const metadata: Metadata = {
   title: "Silence the Noise™ Course | Dr. Samuel E. Wilson, MD",
@@ -106,7 +107,9 @@ export default function CoursePage() {
           <h2 style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontSize: "clamp(2rem,4vw,3rem)", fontWeight: 600, color: "#0f1e35", margin: "0 0 0.5rem" }}>Silence the Noise™ Course</h2>
           <p style={{ fontFamily: "var(--font-cinzel,serif)", fontSize: "2rem", color: "#c9a84c", margin: "0 0 0.5rem" }}>$297</p>
           <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "1rem", color: "#6b6256", margin: "0 0 2rem" }}>One payment · Lifetime access · 30-day money-back guarantee</p>
-          <Link href="/membership" className="btn btn-gold" style={{ fontSize: "0.88rem", padding: "1rem 3rem", display: "inline-flex" }}>Enroll Now →</Link>
+          <CheckoutButton productType="course_stn" className="btn btn-gold" style={{ fontSize: "0.88rem", padding: "1rem 3rem", justifyContent: "center" }}>
+            Enroll Now →
+          </CheckoutButton>
           <p style={{ fontFamily: "var(--font-cormorant,Georgia,serif)", fontStyle: "italic", fontSize: "0.92rem", color: "#9a9189", marginTop: "1.25rem" }}>
             Already a member? The course is available at a discounted rate in your <Link href="/dashboard" style={{ color: "#c9a84c" }}>dashboard</Link>.
           </p>

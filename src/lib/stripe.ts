@@ -36,7 +36,7 @@ export async function createCheckoutSession(params: {
     customer: stripeCustomerId,
     customer_email: stripeCustomerId ? undefined : userEmail,
     line_items: [{ price: priceId, quantity: 1 }],
-    success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${successUrl}${successUrl.includes("?") ? "&" : "?"}session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: cancelUrl,
     metadata: { userId, productType },
     allow_promotion_codes: true,

@@ -1,17 +1,24 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { createPortalSession } from "@/lib/stripe";
 
-export async function POST(req: NextRequest) {
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://samuelewilson.org").replace(/\/+$/, "");
+
+export async function POST() {
   try {
     const { userId } = await auth();
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    const formData = await req.formData();
-    const customerId = formData.get("customerId") as string;
-    if (!customerId) return NextResponse.json({ error: "No customer ID" }, { status: 400 });
-    const origin = req.headers.get("origin") ?? "https://samuelewilson.org";
-    const session = await createPortalSession(customerId, `${origin}/dashboard`);
-    return NextResponse.redirect(session.url);
+
+    // Only ever open the billing portal for the signed-in user's own Stripe
+    // customer. Never trust a customer ID sent by the browser.
+    const user = await currentUser();
+    const customerId = user?.privateMetadata?.stripeCustomerId;
+    if (typeof customerId !== "string" || !customerId) {
+      return NextResponse.json({ error: "No billing account found" }, { status: 400 });
+    }
+
+    const session = await createPortalSession(customerId, `${SITE_URL}/dashboard`);
+    return NextResponse.redirect(session.url, 303);
   } catch (err) {
     console.error("Portal error:", err);
     return NextResponse.json({ error: "Portal failed" }, { status: 500 });

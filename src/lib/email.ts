@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { escapeHtml as e } from "./security";
 
 function getResend() {
   const key = process.env.RESEND_API_KEY;
@@ -22,7 +23,7 @@ export async function subscribeToNewsletter(email: string, firstName?: string) {
   await resend.emails.send({
     from: getFrom(), to: email,
     subject: "You're in — welcome to Silence the Noise™",
-    html: wrap(`<h2>Welcome${firstName ? `, ${firstName}` : ""}.</h2><div class="rule"></div><p>You've joined a growing community of people committed to one thing: silencing the noise.</p><div class="quote">"Many people do not simply need more information. They need less noise."</div><p>Your first free reflection arrives soon.</p><a href="https://samuelewilson.org/framework" class="cta">Explore the Framework →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
+    html: wrap(`<h2>Welcome${firstName ? `, ${e(firstName)}` : ""}.</h2><div class="rule"></div><p>You've joined a growing community of people committed to one thing: silencing the noise.</p><div class="quote">"Many people do not simply need more information. They need less noise."</div><p>Your first free reflection arrives soon.</p><a href="https://samuelewilson.org/framework" class="cta">Explore the Framework →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
   });
 }
 
@@ -31,7 +32,7 @@ export async function sendMembershipWelcome(email: string, firstName: string, pl
   await resend.emails.send({
     from: getFrom(), to: email,
     subject: "Your membership is active — welcome to the community",
-    html: wrap(`<h2>Welcome, ${firstName}.</h2><div class="rule"></div><p>Your ${plan} membership is now active. You have full access to the Silence the Noise™ library.</p><a href="https://samuelewilson.org/dashboard" class="cta">Access Your Dashboard →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
+    html: wrap(`<h2>Welcome, ${e(firstName)}.</h2><div class="rule"></div><p>Your ${e(plan)} membership is now active. You have full access to the Silence the Noise™ library.</p><a href="https://samuelewilson.org/dashboard" class="cta">Access Your Dashboard →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
   });
 }
 
@@ -40,7 +41,7 @@ export async function sendCourseAccessEmail(email: string, firstName: string) {
   await resend.emails.send({
     from: getFrom(), to: email,
     subject: "Your Silence the Noise™ Course is ready",
-    html: wrap(`<h2>Your course is ready, ${firstName}.</h2><div class="rule"></div><p>Start with Module 1: Awareness. It takes approximately 45 minutes and includes a downloadable workbook.</p><a href="https://samuelewilson.org/course" class="cta">Start Module 1 →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
+    html: wrap(`<h2>Your course is ready, ${e(firstName)}.</h2><div class="rule"></div><p>Start with Module 1: Awareness. It takes approximately 45 minutes and includes a downloadable workbook.</p><a href="https://samuelewilson.org/course" class="cta">Start Module 1 →</a><p>— Dr. Samuel E. Wilson, MD</p>`),
   });
 }
 
@@ -49,7 +50,7 @@ export async function sendConsultationConfirmation(email: string, firstName: str
   await resend.emails.send({
     from: getFrom(), to: email,
     subject: "Your consultation with Dr. Wilson — next steps",
-    html: wrap(`<h2>Confirmed, ${firstName}.</h2><div class="rule"></div><p>Dr. Wilson will reach out within 2 business days to schedule your session.</p><a href="https://samuelewilson.org/dashboard" class="cta">View Dashboard →</a>`),
+    html: wrap(`<h2>Confirmed, ${e(firstName)}.</h2><div class="rule"></div><p>Dr. Wilson will reach out within 2 business days to schedule your session.</p><a href="https://samuelewilson.org/dashboard" class="cta">View Dashboard →</a>`),
   });
 }
 
@@ -58,12 +59,12 @@ export async function sendSpeakingInquiry(data: { name: string; email: string; o
   const fromAddr = process.env.RESEND_FROM_EMAIL ?? "noreply@samuelewilson.org";
   await resend.emails.send({
     from: getFrom(), to: fromAddr,
-    subject: `Speaking Inquiry — ${data.organization}`,
-    html: wrap(`<h2>New Speaking Inquiry</h2><p><strong>Name:</strong> ${data.name}</p><p><strong>Email:</strong> ${data.email}</p><p><strong>Organization:</strong> ${data.organization}</p><p><strong>Message:</strong> ${data.message}</p>`),
+    subject: `Speaking Inquiry — ${data.organization.replace(/[\r\n]+/g, " ").slice(0, 120)}`,
+    html: wrap(`<h2>New Speaking Inquiry</h2><p><strong>Name:</strong> ${e(data.name)}</p><p><strong>Email:</strong> ${e(data.email)}</p><p><strong>Organization:</strong> ${e(data.organization)}</p><p><strong>Message:</strong> ${e(data.message)}</p>`),
   });
   await resend.emails.send({
     from: getFrom(), to: data.email,
     subject: "We received your speaking inquiry",
-    html: wrap(`<h2>Thank you, ${data.name}.</h2><div class="rule"></div><p>We received your inquiry and will respond within 3–5 business days.</p><a href="https://samuelewilson.org/speaking" class="cta">View Speaking Topics →</a>`),
+    html: wrap(`<h2>Thank you, ${e(data.name)}.</h2><div class="rule"></div><p>We received your inquiry and will respond within 3–5 business days.</p><a href="https://samuelewilson.org/speaking" class="cta">View Speaking Topics →</a>`),
   });
 }

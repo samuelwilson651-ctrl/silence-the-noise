@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SignIn } from "@clerk/nextjs";
+import { safeRedirectPath } from "@/lib/security";
 
 export const metadata: Metadata = { title: "Sign In | Silence the Noise™" };
 
@@ -13,8 +14,9 @@ export default async function LoginPage({
 
   // Priority: an explicit ?redirect= target (used by requireAuth/requireMembership),
   // then a ?product= handoff from a "Get Started" button, then the dashboard.
+  // Only same-site paths are allowed, so the link can't bounce users to another website.
   const redirectUrl = params.redirect
-    ? params.redirect
+    ? safeRedirectPath(params.redirect)
     : params.product
     ? `/checkout-redirect?product=${encodeURIComponent(params.product)}`
     : "/dashboard";

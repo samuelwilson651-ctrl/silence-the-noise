@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { subscribeToNewsletter } from "@/lib/email";
 import { z } from "zod";
 
-const schema = z.object({ email: z.string().email(), firstName: z.string().optional(), source: z.string().default("homepage") });
+const schema = z.object({
+  email: z.string().trim().email().max(254),
+  firstName: z.string().trim().max(60).optional(),
+  source: z.string().max(60).default("homepage"),
+});
 
 export async function POST(req: NextRequest) {
   try {
